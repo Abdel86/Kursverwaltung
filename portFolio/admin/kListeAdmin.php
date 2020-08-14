@@ -1,7 +1,6 @@
 <?php
 include('incAdmin\header.php');
-include('C:\xampp\htdocs\projekt\portFolio\class\kurs.php');?>
-
+?>
 
 <div class="container">
   <div class="row">
@@ -30,7 +29,7 @@ include('C:\xampp\htdocs\projekt\portFolio\class\kurs.php');?>
              <a class="btn btn-primary"><i class="fa fa-folder-open" aria-hidden="true"></i></a>
             </td>
             <td>
-             <a href="edite.php?id=<?php echo $row['kursID']?>" class="btn btn-info"><i class="fa fa-edit"></i></a>
+             <a href="editeK.php?id=<?php echo $row['kursID']?>" class="btn btn-info"><i class="fa fa-edit"></i></a>
             </td>
             <td>
              <a href="deleteK.php?id=<?php echo $row['kursID']?>" class="btn btn-danger"><i class="fa fa-close"></i></a>

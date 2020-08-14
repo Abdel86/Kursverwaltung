@@ -1,12 +1,11 @@
 <?php
 include('incAdmin\header.php');
-include('C:\xampp\htdocs\projekt\portFolio\class\pruefung.php');?>
-
+?>
 
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <h2 class="p-3 col text-center mt-5 text-white bg-dark"> Alle Pruefungen </h2>
+      <h2 class="p-3 col text-center mt-5 text-white bg-dark"> Alle Kurse </h2>
       <table class="table">
         <thead>
          <tr>
@@ -33,7 +32,7 @@ include('C:\xampp\htdocs\projekt\portFolio\class\pruefung.php');?>
              <a href="edite.php?id=<?php echo $row['pruefungID']?>" class="btn btn-info"><i class="fa fa-edit"></i></a>
             </td>
             <td>
-             <a href="deleteP.php?id=<?php echo $row['pruefungID']?>" class="btn btn-danger"><i class="fa fa-close"></i></a>
+             <a href="deleteK.php?id=<?php echo $row['pruefungID']?>" class="btn btn-danger"><i class="fa fa-close"></i></a>
             </td>
           </tr>
           <?php endforeach; ?>

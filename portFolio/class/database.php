@@ -37,28 +37,27 @@ class Database
    {
      $sql="SELECT * FROM $table";
      $result = mysqli_query($this->con, $sql);
+     while($row = mysqli_fetch_assoc($result))
+      {
+        $data[] = $row;
+      }
 
-       while($row = mysqli_fetch_assoc($result))
-       {
-         $data[] = $row;
-       }
-
-        return $data;
+       return $data;
     }
 
-    public function delete($table,$tabID,$id)
-       {
-           $sql = "DELETE FROM $table WHERE '$tabID'='$id' ";
-           $result = mysqli_query($this->con,$sql);
-           if(mysqli_query($this->con,$sql))
-           {
-               return $this->deletedSuccess;
-           }
-           else
-           {
-               return die("Error : ".mysqli_error($this->con));
-           }
-       }
+    public function delete($table,$id)
+      {
+          $sql = "DELETE FROM $table WHERE `kursID`='$id' ";
+          $result = mysqli_query($this->con,$sql);
+          if(mysqli_query($this->con,$sql))
+          {
+              return $this->deletedSuccess;
+          }
+          else
+          {
+              return die("Error : ".mysqli_error($this->con));
+          }
+      }
 
 
     public function find($table,$id)
@@ -98,7 +97,7 @@ class Database
         }
         else
         {
-            return die("Error : ".mysqli_error($this->conn));
+            return die("Error : ".mysqli_error($this->con));
         }
     }
 

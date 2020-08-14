@@ -20,7 +20,7 @@ $db = new Database();
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href=""><img src="bilder/logo.png" width="70"> </a>
+        <a class="navbar-brand" href=""><img src="logo.png" width="70"> </a>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">

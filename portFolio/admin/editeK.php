@@ -2,6 +2,9 @@
 include('incAdmin\header.php');
 include('C:\xampp\htdocs\projekt\portFolio\class\kurs.php');
 ?>
+<?php  $row = $db->find('kurs',$_GET['id']); ?>
+<?php if(isset($_GET['id']) && is_numeric($_GET['id']) && $row):  ?>
+
 
 
 <?php
@@ -14,9 +17,10 @@ if(isset($_POST['submit']))
   $ende = $_POST['ende'];
   $anzahl = $_POST['anzahl'];
 
-          $sql = "INSERT INTO kurs (kursNummer, kursBeginn, kursEnde, teilnehmerAnzahl)
-          values('$nummer', '$beginn', '$ende', '$anzahl')";
-          $result = $db->insert($sql);
+          $sql = "UPDATE kurs SET `kursNummer`='$nummer',`kursBeginn`='$beginn',`kursEnde`='$ende',
+                            `teilnehmerAnzahl`='$anzahl' WHERE `kursID`='$row[kursID]' ";
+
+          $result = $db->update($sql);
           if($result)
           {
             $success = "Eingabe erfolgreich zugefügt";
@@ -25,7 +29,7 @@ if(isset($_POST['submit']))
  ?>
 
 
-<h1 class="text-center col-12 bg-dark py-3 text-white my-2">Neuen Kurs erstellen</h1>
+<h1 class="text-center col-12 bg-dark py-3 text-white my-2"> Kurs Ändern</h1>
 
 <?php if($error): ?>
   <h5 class="alert alert-danger text-center"><?php echo $error ?></h5>
@@ -37,24 +41,25 @@ if(isset($_POST['submit']))
   <form class="my-2 p-3 border" method="post" action="">
     <div class="form-group">
       <label for="inputNummer">Nummer</label>
-      <input type="text" name="nummer" class="form-control" id="inputNummer">
+      <input type="text" name="nummer" value="<?php echo $row['kursNummer']; ?>" class="form-control" id="inputNummer">
     </div>
     <div class="form-group">
       <label for="inputBeginn">Beginn</label>
-      <input type="date" name="beginn" class="form-control" id="inputBeginn">
+      <input type="date" name="beginn" value="<?php echo $row['kursBeginn']; ?>" class="form-control" id="inputBeginn">
     </div>
     <div class="form-group">
       <label for="inputEnde">Ende</label>
-      <input type="date" name="ende" class="form-control" id="inputEnde">
+      <input type="date" name="ende" value="<?php echo $row['kursEnde']; ?>" class="form-control" id="inputEnde">
     </div>
     <div class="form-group">
       <label for="inputAnzahl">Teilnehmeranzahl</label>
-      <input type="number" name="anzahl" class="form-control" id="inputAnzahl">
+      <input type="number" name="anzahl" value="<?php echo $row['teilnehmerAnzahl']; ?>" class="form-control" id="inputAnzahl">
     </div>
 
     <button type="submit" name="submit" class=" btn btn-dark">Speichern</button>
   </form>
 </div>
+<?php  endif;  ?>
 
 <?php
 include('incAdmin\footer.php')

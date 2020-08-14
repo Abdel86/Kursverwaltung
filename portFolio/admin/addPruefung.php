@@ -1,6 +1,6 @@
 <?php
 include('incAdmin\header.php');
-include('C:\xampp\htdocs\projekt\portFolio\class\kurs.php');
+include('C:\xampp\htdocs\projekt\portFolio\class\pruefung.php');
 ?>
 
 
@@ -13,9 +13,8 @@ if(isset($_POST['submit']))
   $beginn = $_POST['beginn'];
   $ende = $_POST['ende'];
   $anzahl = $_POST['anzahl'];
-  $kurs = new Kurs();
 
-          $sql = "INSERT INTO pruefung (pruefungNummer, preufungBeginn, pruefungEnde, teilnehmerAnzahl)
+          $sql = "INSERT INTO pruefung (pruefungNummer, pruefungBeginn, pruefungEnde, teilnehmerAnzahl)
           values('$nummer', '$beginn', '$ende', '$anzahl')";
           $result = $db->insert($sql);
           if($result)
@@ -26,7 +25,7 @@ if(isset($_POST['submit']))
  ?>
 
 
-<h1 class="text-center col-12 bg-dark py-3 text-white my-2">Neue Prüfung erstellen</h1>
+<h1 class="text-center col-12 bg-dark py-3 text-white my-2">Neuen pruefung erstellen</h1>
 
 <?php if($error): ?>
   <h5 class="alert alert-danger text-center"><?php echo $error ?></h5>
