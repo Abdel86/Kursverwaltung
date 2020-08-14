@@ -1,7 +1,10 @@
 <?php
 include('C:\xampp\htdocs\projekt\portFolio\class\validation.php');
+include('C:\xampp\htdocs\projekt\portFolio\class\database.php');
+
 
 $val = new Validation();
+$db = new Database();
 
 ?>
 <!doctype html>

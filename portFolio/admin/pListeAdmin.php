@@ -1,22 +1,25 @@
 <?php
 include('incAdmin\header.php');
-include('C:\xampp\htdocs\projekt\portFolio\class\pruefung.php');
-?>
+include('C:\xampp\htdocs\projekt\portFolio\class\kurs.php');?>
+
 
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <h2 class="p-3 col text-center mt-5 text-white bg-dark"> Alle Prüfungen </h2>
-        <table class="table">
-          <thead>
-           <tr>
-            <th scope="col"> Prüfungsnummer </th>
-            <th scope="col"> Prüfungsbeginn </th>
-            <th scope="col"> Prüfungsende </th>
-            <th scope="col"> TeilnehmerAnzahl </th>
-           </tr>
-          </thead>
-        <tbody>
+      <h2 class="p-3 col text-center mt-5 text-white bg-dark"> Alle Pruefungen </h2>
+      <table class="table">
+        <thead>
+         <tr>
+          <th scope="col"> Kursnummer </th>
+          <th scope="col"> Kursbeginn </th>
+          <th scope="col"> Kursende </th>
+          <th scope="col"> TeilnehmerAnzahl </th>
+          <th scope="col"> Öffnen </th>
+          <th scope="col"> Ändern </th>
+          <th scope="col"> Löschen </th>
+         </tr>
+        </thead>
+      <tbody>
         <?php foreach ($db->read('pruefung') as $row): ?>
           <tr>
             <td scope="row"><?php echo $row['pruefungNummer'] ?></td>
@@ -24,16 +27,16 @@ include('C:\xampp\htdocs\projekt\portFolio\class\pruefung.php');
             <td scope="row"><?php echo $row['pruefungEnde'] ?></td>
             <td scope="row"><?php echo $row['teilnehmerAnzahl'] ?></td>
             <td>
-             <a href="" class="btn btn-primary"><i class="fa fa-folder-open" aria-hidden="true"></i></a>
+             <a class="btn btn-primary"><i class="fa fa-folder-open" aria-hidden="true"></i></a>
             </td>
             <td>
-             <a href="" class="btn btn-info"><i class="fa fa-edit"></i></a>
+             <a href="edite.php?id=<?php echo $row['pruefungID']?>" class="btn btn-info"><i class="fa fa-edit"></i></a>
             </td>
             <td>
-             <a href="" class="btn btn-danger"><i class="fa fa-close"></i></a>
+             <a href="delete.php?id=<?php echo $row['pruefungID']?>" class="btn btn-danger"><i class="fa fa-close"></i></a>
             </td>
           </tr>
-         <?php endforeach; ?>
+          <?php endforeach; ?>
         </tbody>
       </div>
   </div>

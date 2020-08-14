@@ -1,34 +1,27 @@
 <?php
 include('incAdmin\header.php');
-include('C:\xampp\htdocs\projekt\portFolio\class\pruefung.php');
-
+include('C:\xampp\htdocs\projekt\portFolio\class\kurs.php');
 ?>
 
 
 <?php
 $error = "";
 $success = "";
-$val = new Validation();
 if(isset($_POST['submit']))
 {
   $nummer = $_POST['nummer'];
   $beginn = $_POST['beginn'];
   $ende = $_POST['ende'];
   $anzahl = $_POST['anzahl'];
-  //$dozent = $_POST['dozent'];
-  $test = new Pruefung();
+  $kurs = new Kurs();
 
-
-  if($val->requiredInput($nummer) && $val->requiredInput($beginn) && $val->requiredInput($ende) && $val->requiredInput($anzahl))
-  {
-
-    $test->addVeranstaltung($nummer, $beginn, $ende, $anzahl);
-    $success = "Eingabe erfolgreich zugefügt";
-  }
-  else
-  {
-    $error = "Bitte alle Eingaben ausfühllen";
-  }
+          $sql = "INSERT INTO pruefung (pruefungNummer, preufungBeginn, pruefungEnde, teilnehmerAnzahl)
+          values('$nummer', '$beginn', '$ende', '$anzahl')";
+          $result = $db->insert($sql);
+          if($result)
+          {
+            $success = "Eingabe erfolgreich zugefügt";
+          }
 }
  ?>
 
@@ -59,12 +52,6 @@ if(isset($_POST['submit']))
       <label for="inputAnzahl">Teilnehmeranzahl</label>
       <input type="number" name="anzahl" class="form-control" id="inputAnzahl">
     </div>
-    <div class="form-group">
-       <label for="Thema">Thema</label>
-       <select name="thema" class="form-control" >
-         <option>Krimi</option>
-       </select>
-     </div>
 
     <button type="submit" name="submit" class=" btn btn-dark">Speichern</button>
   </form>

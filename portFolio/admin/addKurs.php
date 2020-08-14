@@ -13,19 +13,15 @@ if(isset($_POST['submit']))
   $beginn = $_POST['beginn'];
   $ende = $_POST['ende'];
   $anzahl = $_POST['anzahl'];
-  //$dozent = $_POST['dozent'];
   $kurs = new Kurs();
 
-  if($val->requiredInput($nummer) && $val->requiredInput($beginn) && $val->requiredInput($ende) && $val->requiredInput($anzahl))
-  {
-    $kurs->addVeranstaltung($nummer, $beginn, $ende, $anzahl);
-    $success = "Eingabe erfolgreich zugefügt";
-
-  }
-  else
-  {
-    $error = "Bitte alle Eingaben ausfühllen";
-  }
+          $sql = "INSERT INTO kurs (kursNummer, kursBeginn, kursEnde, teilnehmerAnzahl)
+          values('$nummer', '$beginn', '$ende', '$anzahl')";
+          $result = $db->insert($sql);
+          if($result)
+          {
+            $success = "Eingabe erfolgreich zugefügt";
+          }
 }
  ?>
 

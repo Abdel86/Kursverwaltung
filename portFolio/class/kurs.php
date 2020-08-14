@@ -1,11 +1,16 @@
 <?php
 include('veranstaltung.php');
+include('database.php');
+$db = new Database();
+
+
 
 
 
 
 class Kurs extends Veranstaltung
 {
+
 
    function addVeranstaltung($nummer, $datumBeginn ,$datumEnde, $teilnehmerAnzahl)
   {

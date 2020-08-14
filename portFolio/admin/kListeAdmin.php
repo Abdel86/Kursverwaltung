@@ -1,9 +1,7 @@
 <?php
 include('incAdmin\header.php');
-include('C:\xampp\htdocs\projekt\portFolio\class\kurs.php');
+include('C:\xampp\htdocs\projekt\portFolio\class\kurs.php');?>
 
-
-?>
 
 <div class="container">
   <div class="row">
@@ -16,6 +14,9 @@ include('C:\xampp\htdocs\projekt\portFolio\class\kurs.php');
           <th scope="col"> Kursbeginn </th>
           <th scope="col"> Kursende </th>
           <th scope="col"> TeilnehmerAnzahl </th>
+          <th scope="col"> Öffnen </th>
+          <th scope="col"> Ändern </th>
+          <th scope="col"> Löschen </th>
          </tr>
         </thead>
       <tbody>
@@ -26,16 +27,16 @@ include('C:\xampp\htdocs\projekt\portFolio\class\kurs.php');
             <td scope="row"><?php echo $row['kursEnde'] ?></td>
             <td scope="row"><?php echo $row['teilnehmerAnzahl'] ?></td>
             <td>
-             <a href="" class="btn btn-primary"><i class="fa fa-folder-open" aria-hidden="true"></i></a>
+             <a class="btn btn-primary"><i class="fa fa-folder-open" aria-hidden="true"></i></a>
             </td>
             <td>
-             <a href="" class="btn btn-info"><i class="fa fa-edit"></i></a>
+             <a href="edite.php?id=<?php echo $row['kursID']?>" class="btn btn-info"><i class="fa fa-edit"></i></a>
             </td>
             <td>
-             <a href="" class="btn btn-danger" href="addKurs.php?id=<?php echo $row['kursNummer']; ?>"><i class="fa fa-close"></i></a>
+             <a href="delete.php?id=<?php echo $row['kursID']?>" class="btn btn-danger"><i class="fa fa-close"></i></a>
             </td>
           </tr>
-         <?php endforeach; ?>
+          <?php endforeach; ?>
         </tbody>
       </div>
   </div>
