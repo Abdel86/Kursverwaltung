@@ -1,6 +1,6 @@
 <?php
 include('incAdmin\header.php');
-include('C:\xampp\htdocs\projekt\portFolio\class\kurs.php');?>
+include('C:\xampp\htdocs\projekt\portFolio\class\pruefung.php');?>
 
 
 <div class="container">
@@ -33,7 +33,7 @@ include('C:\xampp\htdocs\projekt\portFolio\class\kurs.php');?>
              <a href="edite.php?id=<?php echo $row['pruefungID']?>" class="btn btn-info"><i class="fa fa-edit"></i></a>
             </td>
             <td>
-             <a href="delete.php?id=<?php echo $row['pruefungID']?>" class="btn btn-danger"><i class="fa fa-close"></i></a>
+             <a href="deleteP.php?id=<?php echo $row['pruefungID']?>" class="btn btn-danger"><i class="fa fa-close"></i></a>
             </td>
           </tr>
           <?php endforeach; ?>
@@ -45,5 +45,3 @@ include('C:\xampp\htdocs\projekt\portFolio\class\kurs.php');?>
 <?php
 include('incAdmin\footer.php');
 ?>
-
- ?>
