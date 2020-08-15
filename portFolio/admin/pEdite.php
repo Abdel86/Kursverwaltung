@@ -8,27 +8,67 @@ include('C:\xampp\htdocs\projekt\portFolio\class\pruefung.php');
 <?php if(isset($_GET['id']) && is_numeric($_GET['id']) && $row):  ?>
 
 
-<?php
-$error = "";
-$success = "";
-if(isset($_POST['submit']))
-{
-  $nummer = $_POST['nummer'];
-  $name = $_POST['name'];
-  $beginn = $_POST['beginn'];
-  $ende = $_POST['ende'];
-  $anzahl = $_POST['anzahl'];
+  <?php
+  $error = "";
+  $success = "";
+  if(isset($_POST['submit']))
+  {
+    $nummer = $_POST['nummer'];
+    $name = $_POST['name'];
+    $beginn = $_POST['beginn'];
+    $ende = $_POST['ende'];
+    $anzahl = $_POST['anzahl'];
+    $kosten = $_POST['kosten'];
+    $dozent = $_POST['dozent'];
 
-  $sql = "UPDATE pruefung SET `pruefungNummer`='$nummer',`pruefungName`='$name',`pruefungBeginn`='$beginn',`pruefungEnde`='$ende',
-                    `teilnehmerAnzahl`='$anzahl' WHERE `pruefungID`='$row[pruefungID]' ";
-
-          $result = $db->update($sql);
-          if($result)
+    if($val->requiredInput($nummer) && $val->requiredInput($name) && $val->requiredInput($beginn) && $val->requiredInput($ende) && $val->requiredInput($anzahl))
+    {
+      if($val->checkNummer($nummer))
+      {
+        if($val->checkName($name))
+        {
+          if($val->checkDatum($beginn, $ende))
           {
-            $success = "Eingabe erfolgreich zugefügt";
+            if($val->checkAnzahl($anzahl))
+            {
+              $sql = "UPDATE pruefung SET `pruefungNummer`='$nummer',`pruefungName`='$name',`pruefungBeginn`='$beginn',`pruefungEnde`='$ende',
+                                `teilnehmerAnzahl`='$anzahl',`kosten`='$kosten', `dozentID`='$dozent' WHERE `pruefungID`='$row[pruefungID]' ";
+              $result = $db->update($sql);
+                if($result)
+                {
+                  $success = "Eingabe erfolgreich zugefügt";
+                }
+                else
+                {
+                  $error = "Eingabe nicht erfolgreich zugefügt";
+                }
+            }
+            else
+            {
+              $error = "Bitte geben Sie eine Zahl zwischen 5 und 25 ein";
+            }
           }
-}
- ?>
+          else
+          {
+            $error = "Bitte geben Sie ein gültiges Endedatum ein";
+          }
+        }
+        else
+        {
+          $error = "Bitte geben Sie einen gültigen Namen ein";
+        }
+      }
+      else
+      {
+        $error = "Bitte geben Sie eine 6-Stellige Nummer ein";
+      }
+    }
+    else
+    {
+      $error = "Bitte alle Eingaben ausfühllen";
+    }
+  }
+   ?>
 
 
 <h1 class="text-center col-12 bg-dark py-3 text-white my-2"> Prüfung Ändern</h1>
@@ -60,6 +100,18 @@ if(isset($_POST['submit']))
     <div class="form-group">
       <label for="inputAnzahl">Teilnehmeranzahl</label>
       <input type="number" name="anzahl" value="<?php echo $row['teilnehmerAnzahl']?>" class="form-control" id="inputAnzahl">
+    </div>
+    <div class="form-group">
+      <label for="inputKosten">Kosten</label>
+      <input type="text" name="kosten" class="form-control" id="inputKosten">
+    </div>
+    <div class="form-group">
+      <label for="Dozent">Dozent</label>
+      <select name="dozent" class="form-control" >
+        <?php foreach ($db->read('dozent') as $row): ?>
+        <option><?php echo $row['dozentID'];?></option>
+        <?php endforeach; ?>
+      </select>
     </div>
 
     <button type="submit" name="submit" class=" btn btn-dark">Speichern</button>

@@ -1,6 +1,6 @@
 <?php
 /**
- * [Diese Klasse stellt die Verbindung zur Datenbank und beschreibt die CRUD Funktionen]
+ * [Diese Klasse stellt die Verbindung zur Datenbank ]
  */
 class Database
 {

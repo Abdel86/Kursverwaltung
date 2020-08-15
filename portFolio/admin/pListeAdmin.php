@@ -14,6 +14,7 @@ include('incAdmin\header.php');
           <th scope="col"> Prüfungsbeginn </th>
           <th scope="col"> Prüfungsende </th>
           <th scope="col"> TeilnehmerAnzahl </th>
+          <th scope="col"> Kosten </th>
           <th scope="col"> Dozent </th>
           <th scope="col"> Ändern </th>
           <th scope="col"> Löschen </th>
@@ -27,6 +28,7 @@ include('incAdmin\header.php');
             <td scope="row"><?php echo $row['pruefungBeginn'] ?></td>
             <td scope="row"><?php echo $row['pruefungEnde'] ?></td>
             <td scope="row"><?php echo $row['teilnehmerAnzahl'] ?></td>
+            <td scope="row"><?php echo $row['kosten'] ?></td>
             <td scope="row"><?php echo $row['dozentID'] ?></td>
 
 

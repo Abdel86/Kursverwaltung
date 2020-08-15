@@ -14,6 +14,8 @@ include('incAdmin\header.php');
           <th scope="col"> Kursbeginn </th>
           <th scope="col"> Kursende </th>
           <th scope="col"> TeilnehmerAnzahl </th>
+          <th scope="col"> Kosten </th>
+          <th scope="col"> Dozent </th>
           <th scope="col"> Ändern </th>
           <th scope="col"> Löschen </th>
          </tr>
@@ -26,6 +28,9 @@ include('incAdmin\header.php');
             <td scope="row"><?php echo $row['kursBeginn'] ?></td>
             <td scope="row"><?php echo $row['kursEnde'] ?></td>
             <td scope="row"><?php echo $row['teilnehmerAnzahl'] ?></td>
+            <td scope="row"><?php echo $row['kosten'] ?></td>
+            <td scope="row"><?php echo $row['dozentID'] ?></td>
+
             <td>
              <a href="kEdite.php?id=<?php echo $row['kursID']?>" class="btn btn-info"><i class="fa fa-edit"></i></a>
             </td>

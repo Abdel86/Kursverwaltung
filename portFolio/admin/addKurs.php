@@ -14,26 +14,60 @@ if(isset($_POST['submit']))
   $beginn = $_POST['beginn'];
   $ende = $_POST['ende'];
   $anzahl = $_POST['anzahl'];
+  $kosten = $_POST['kosten'];
   $dozent = $_POST['dozent'];
 
-
-
-          $sql = "INSERT INTO kurs (kursNummer, kursName, kursBeginn, kursEnde, teilnehmerAnzahl,dozentID )
-          values('$nummer', '$name', '$beginn', '$ende', '$anzahl', '$dozent')";
-          $result = $db->insert($sql);
-          if($result)
+  if($val->requiredInput($nummer) && $val->requiredInput($name) && $val->requiredInput($beginn) && $val->requiredInput($ende) && $val->requiredInput($anzahl))
+  {
+    if($val->checkNummer($nummer))
+    {
+      if($val->checkName($name))
+      {
+        if($val->checkDatum($beginn, $ende))
+        {
+          if($val->checkAnzahl($anzahl))
           {
-            $success = "Eingabe erfolgreich zugefügt";
+            $sql = "INSERT INTO kurs (kursNummer, kursName, kursBeginn, kursEnde, teilnehmerAnzahl, kosten, dozentID )
+            values('$nummer', '$name', '$beginn', '$ende', '$anzahl', '$kosten','$dozent')";
+            $result = $db->insert($sql);
+              if($result)
+              {
+                $success = "Eingabe erfolgreich zugefügt";
+              }
+              else
+              {
+                $error = "Eingabe nicht erfolgreich zugefügt";
+              }
           }
           else
           {
-            $error = "Eingabe nicht erfolgreich zugefügt";
+            $error = "Bitte geben Sie eine Zahl zwischen 5 und 25 ein";
           }
+        }
+        else
+        {
+          $error = "Bitte geben Sie ein gültiges Endedatum ein";
+        }
+      }
+      else
+      {
+        $error = "Bitte geben Sie einen gültigen Namen ein";
+      }
+    }
+    else
+    {
+      $error = "Bitte geben Sie eine 6-Stellige Nummer ein";
+    }
+  }
+  else
+  {
+    $error = "Bitte alle Eingaben ausfühllen";
+  }
 }
  ?>
 
 
-<h1 class="text-center col-12 bg-dark py-3 text-white my-2">Neue Prüfung erstellen</h1>
+<h1 class="text-center col-12 bg-dark py-3 text-white my-2">Neuen Kurs erstellen</h1>
 
 <?php if($error): ?>
   <h5 class="alert alert-danger text-center"><?php echo $error ?></h5>
@@ -62,6 +96,10 @@ if(isset($_POST['submit']))
     <div class="form-group">
       <label for="inputAnzahl">Teilnehmeranzahl</label>
       <input type="number" name="anzahl" class="form-control" id="inputAnzahl">
+    </div>
+    <div class="form-group">
+      <label for="inputKosten">Kosten</label>
+      <input type="text" name="kosten" class="form-control" id="inputKosten">
     </div>
     <div class="form-group">
       <label for="Dozent">Dozent</label>

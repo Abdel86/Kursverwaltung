@@ -14,6 +14,7 @@ include('incUser\header.php');
           <th scope="col"> Kursbeginn </th>
           <th scope="col"> Kursende </th>
           <th scope="col"> TeilnehmerAnzahl </th>
+          <th scope="col"> Kosten </th>
           <th scope="col"> Anmelden </th>
          </tr>
         </thead>
@@ -25,6 +26,7 @@ include('incUser\header.php');
             <td scope="row"><?php echo $row['kursBeginn'] ?></td>
             <td scope="row"><?php echo $row['kursEnde'] ?></td>
             <td scope="row"><?php echo $row['teilnehmerAnzahl'] ?></td>
+            <td scope="row"><?php echo $row['kosten'] ?></td>
             <td>
              <a href="" class="btn btn-info"><i class="fa fa-registered"></i></a>
             </td>

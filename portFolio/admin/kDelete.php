@@ -2,7 +2,7 @@
 
 <?php  $row = $db->find('kurs','kursID',$_GET['id']); ?>
 <?php if(isset($_GET['id']) && is_numeric($_GET['id']) && $row):  ?>
-<?php echo $db->delete('kurs','kursID',$row['id']); ?>
+<?php  $db->delete('kurs','kursID',$row['id']); ?>
 
 <?php  endif;  ?>
 
