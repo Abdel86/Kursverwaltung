@@ -29,7 +29,7 @@ class Database
 
   public function insert($sql)
    {
-     mysqli_query($this->con, $sql);
+     return mysqli_query($this->con, $sql);
    }
 
 

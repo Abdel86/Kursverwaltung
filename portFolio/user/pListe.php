@@ -2,10 +2,11 @@
 include('incUser\header.php');
 ?>
 
+
 <div class="container">
   <div class="row">
     <div class="col-sm-12">
-      <h2 class="p-3 col text-center mt-5 text-white bg-dark"> Alle pruefunge </h2>
+      <h2 class="p-3 col text-center mt-5 text-white bg-dark"> Alle Prüfungen </h2>
       <table class="table">
         <thead>
          <tr>
@@ -24,7 +25,7 @@ include('incUser\header.php');
             <td scope="row"><?php echo $row['pruefungEnde'] ?></td>
             <td scope="row"><?php echo $row['teilnehmerAnzahl'] ?></td>
             <td>
-             <a href="" class="btn btn-info"><i class="fa fa-edit"></i></a>
+             <a href="" class="btn btn-info"><i class="fa fa-registered"></i></a>
             </td>
 
           </tr>

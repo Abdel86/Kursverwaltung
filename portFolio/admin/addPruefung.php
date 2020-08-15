@@ -10,12 +10,16 @@ $success = "";
 if(isset($_POST['submit']))
 {
   $nummer = $_POST['nummer'];
+  $name = $_POST['name'];
   $beginn = $_POST['beginn'];
   $ende = $_POST['ende'];
   $anzahl = $_POST['anzahl'];
+  $dozent = $_POST['dozent'];
 
-          $sql = "INSERT INTO pruefung (pruefungNummer, pruefungBeginn, pruefungEnde, teilnehmerAnzahl)
-          values('$nummer', '$beginn', '$ende', '$anzahl')";
+
+
+          $sql = "INSERT INTO pruefung (pruefungNummer, pruefungName, pruefungBeginn, pruefungEnde, teilnehmerAnzahl,dozentID )
+          values('$nummer', '$name', '$beginn', '$ende', '$anzahl', '$dozent')";
           $result = $db->insert($sql);
           if($result)
           {
@@ -40,6 +44,10 @@ if(isset($_POST['submit']))
       <input type="text" name="nummer" class="form-control" id="inputNummer">
     </div>
     <div class="form-group">
+      <label for="inputName">Name</label>
+      <input type="text" name="name" class="form-control" id="inputName">
+    </div>
+    <div class="form-group">
       <label for="inputBeginn">Beginn</label>
       <input type="date" name="beginn" class="form-control" id="inputBeginn">
     </div>
@@ -51,7 +59,14 @@ if(isset($_POST['submit']))
       <label for="inputAnzahl">Teilnehmeranzahl</label>
       <input type="number" name="anzahl" class="form-control" id="inputAnzahl">
     </div>
-
+    <div class="form-group">
+      <label for="Dozent">Dozent</label>
+      <select name="dozent" class="form-control" >
+        <?php foreach ($db->read('dozent') as $row): ?>
+        <option><?php echo $row['dozentID'];?></option>
+        <?php endforeach; ?>
+      </select>
+    </div>
     <button type="submit" name="submit" class=" btn btn-dark">Speichern</button>
   </form>
 </div>

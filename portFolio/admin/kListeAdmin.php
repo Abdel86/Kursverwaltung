@@ -10,6 +10,7 @@ include('incAdmin\header.php');
         <thead>
          <tr>
           <th scope="col"> Kursnummer </th>
+          <th scope="col"> Kursname </th>
           <th scope="col"> Kursbeginn </th>
           <th scope="col"> Kursende </th>
           <th scope="col"> TeilnehmerAnzahl </th>
@@ -21,6 +22,7 @@ include('incAdmin\header.php');
         <?php foreach ($db->read('kurs') as $row): ?>
           <tr>
             <td scope="row"><?php echo $row['kursNummer'] ?></td>
+            <td scope="row"><?php echo $row['kursName'] ?></td>
             <td scope="row"><?php echo $row['kursBeginn'] ?></td>
             <td scope="row"><?php echo $row['kursEnde'] ?></td>
             <td scope="row"><?php echo $row['teilnehmerAnzahl'] ?></td>

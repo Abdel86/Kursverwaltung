@@ -14,11 +14,12 @@ $success = "";
 if(isset($_POST['submit']))
 {
   $nummer = $_POST['nummer'];
+  $name = $_POST['name'];
   $beginn = $_POST['beginn'];
   $ende = $_POST['ende'];
   $anzahl = $_POST['anzahl'];
 
-  $sql = "UPDATE pruefung SET `pruefungNummer`='$nummer',`pruefungBeginn`='$beginn',`pruefungEnde`='$ende',
+  $sql = "UPDATE pruefung SET `pruefungNummer`='$nummer',`pruefungName`='$name',`pruefungBeginn`='$beginn',`pruefungEnde`='$ende',
                     `teilnehmerAnzahl`='$anzahl' WHERE `pruefungID`='$row[pruefungID]' ";
 
           $result = $db->update($sql);
@@ -41,8 +42,12 @@ if(isset($_POST['submit']))
 <div class="col-md-6 offset-md-3">
   <form class="my-2 p-3 border" method="post" action="">
     <div class="form-group">
-      <label for="inputNummer">Nummer</label>
-      <input type="text" name="nummer" value="<?php echo $row['pruefungID']?>" class="form-control" id="inputNummer">
+      <label for="inputNummer">Prüfungsnummer</label>
+      <input type="text" name="nummer" value="<?php echo $row['pruefungNummer']?>" class="form-control" id="inputNummer">
+    </div>
+    <div class="form-group">
+      <label for="inputName">Prüfungsname</label>
+      <input type="text" name="name" value="<?php echo $row['pruefungName']?>" class="form-control" id="inputName">
     </div>
     <div class="form-group">
       <label for="inputBeginn">Beginn</label>

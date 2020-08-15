@@ -14,11 +14,12 @@ $success = "";
 if(isset($_POST['submit']))
 {
   $nummer = $_POST['nummer'];
+  $name = $_POST['name'];
   $beginn = $_POST['beginn'];
   $ende = $_POST['ende'];
   $anzahl = $_POST['anzahl'];
 
-  $sql = "UPDATE kurs SET `kursNummer`='$nummer',`kursBeginn`='$beginn',`kursEnde`='$ende',
+  $sql = "UPDATE kurs SET `kursNummer`='$nummer',`kursName`='$name',`kursBeginn`='$beginn',`kursEnde`='$ende',
                     `teilnehmerAnzahl`='$anzahl' WHERE `kursID`='$row[kursID]' ";
 
           $result = $db->update($sql);
@@ -43,6 +44,10 @@ if(isset($_POST['submit']))
     <div class="form-group">
       <label for="inputNummer">Nummer</label>
       <input type="text" name="nummer" value="<?php echo $row['kursID']?>" class="form-control" id="inputNummer">
+    </div>
+    <div class="form-group">
+      <label for="inputName">Name</label>
+      <input type="text" name="name" value="<?php echo $row['kursName']?>" class="form-control" id="inputName">
     </div>
     <div class="form-group">
       <label for="inputBeginn">Beginn</label>
