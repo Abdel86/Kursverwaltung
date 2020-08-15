@@ -45,9 +45,9 @@ class Database
        return $data;
     }
 
-    public function delete($table,$id)
+    public function delete($table, $tabID, $id)
       {
-          $sql = "DELETE FROM $table WHERE `kursID`='$id' ";
+          $sql = "DELETE FROM $table WHERE `$tabID`='$id' ";
           $result = mysqli_query($this->con,$sql);
           if(mysqli_query($this->con,$sql))
           {
@@ -60,10 +60,10 @@ class Database
       }
 
 
-    public function find($table,$id)
+    public function find($table, $tabID, $id)
     {
         $id = filter_var($id,FILTER_VALIDATE_INT);
-        $sql = "SELECT * FROM $table WHERE `kursID`='$id' LIMIT 1 ";
+        $sql = "SELECT * FROM $table WHERE `$tabID`='$id' LIMIT 1 ";
         $result = mysqli_query($this->con,$sql);
         if(mysqli_query($this->con,$sql))
         {
