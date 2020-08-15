@@ -1,4 +1,7 @@
-<?php ?>
+<?php
+include('C:\xampp\htdocs\projekt\portFolio\class\database.php');
+
+$db = new Database();?>
 <!doctype html>
 <html lang="de">
   <head>
@@ -18,10 +21,10 @@
             <ul class="navbar-nav">
 
                 <li class="nav-item">
-                    <a class="nav-link" href="kListeUser.php">Kursangebote</a>
+                    <a class="nav-link" href="kListe.php">Kursangebote</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pListeUser">Prüfungsangebote</a>
+                    <a class="nav-link" href="pListe.php">Prüfungsangebote</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="">Meine Anmeldungen</a>
