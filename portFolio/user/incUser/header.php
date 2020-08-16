@@ -30,7 +30,7 @@ $db = new Database();
                     <a class="nav-link" href="pListe.php">Prüfungsangebote</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="">Meine Anmeldungen</a>
+                    <a class="nav-link" href="meineAnmeldungen.php">Meine Anmeldungen</a>
                 </li>
 
             </ul>

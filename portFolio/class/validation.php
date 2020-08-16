@@ -1,6 +1,6 @@
 <?php
 /**
- * [Validation description]
+ * [die Klasse prueft, ob die eingegebene Daten korrekt sind]
  */
 class Validation
 {

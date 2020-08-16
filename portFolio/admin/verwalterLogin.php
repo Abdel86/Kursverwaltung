@@ -1,15 +1,14 @@
 <?php
-include('verwalter.php');
 include('headerhome.php');
 session_start();
- 
+
 ?>
 
 <div class="container">
 <div id="article">
-         
+
 <div class="col-md-6 offset-md-3">
-<a>Verwalter-Login</a>   
+<a>Verwalter-Login</a>
   <form class="my-2 p-3 border" method="post" action="">
     <div class="form-group">
       <label for="inputNummer">Name</label>
@@ -21,13 +20,13 @@ session_start();
     </div>
 
     <button type="submit" name="einloggen" class=" btn btn-dark">Login </button>
-  </form>   
-      
+  </form>
+
       </div>
 </div>
 
 <?php
-include('footer.php');
+include('incAdmin/footer.php');
 
 
  ?>

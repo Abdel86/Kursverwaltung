@@ -1,7 +1,9 @@
 <?php
 include('veranstaltung.php');
 
-
+/**
+ * [Die Klasse repraesentiert einen Kurs und erbt die Eingenschaften einer Veranstaltung]
+ */
 
 
 
@@ -11,7 +13,7 @@ class Kurs extends Veranstaltung
 {
 
 
-   function addVeranstaltung($nummer, $datumBeginn ,$datumEnde, $teilnehmerAnzahl)
+   function addVeranstaltung($nummer, $name, $datumBeginn ,$datumEnde, $teilnehmerAnzahl, $kosten)
   {
     $sql = "INSERT INTO kurs (kursNummer, kursBeginn, kursEnde, teilnehmerAnzahl)
     values('$nummer', '$datumBeginn', '$datumEnde', '$teilnehmerAnzahl')";

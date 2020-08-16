@@ -6,11 +6,11 @@
 
  abstract class Person
 {
-  private $name;
-  private $gDatum;
-  private $gender;
-  private $email;
-  private $password;
+  protected $name;
+  protected $gDatum;
+  protected $gender;
+  protected $email;
+  protected $password;
 
 
   public function __construct($name, $gDatum,$gender,$email,$password)

@@ -10,10 +10,6 @@ class Database
   private $dbName = "kursverwaltung";
   private $con;
 
-  private $successAdd = " Your Record Have Been Added";
-    private $updatedSuccess = " Your Record Have Been Updated";
-    private $deletedSuccess = " Your Record Have Been Deleted";
-
 
 /**
  * [__construct description]
@@ -32,7 +28,11 @@ class Database
      return mysqli_query($this->con, $sql);
    }
 
-
+/**
+ * [die Funktion liest die Zeilen in der Tabelle und gibt sie zurueck]
+ * @param  [type] $table [description]
+ * @return [type]        [description]
+ */
    public function read($table)
    {
      $sql="SELECT * FROM $table";
@@ -45,13 +45,20 @@ class Database
        return $data;
     }
 
+/**
+ * [die Funktion löscht die Zeilen in der Tabelle]
+ * @param  [type] $table [description]
+ * @param  [type] $tabID [description]
+ * @param  [type] $id    [description]
+ * @return [type]        [description]
+ */
     public function delete($table, $tabID, $id)
       {
           $sql = "DELETE FROM $table WHERE `$tabID`='$id' ";
           $result = mysqli_query($this->con,$sql);
           if(mysqli_query($this->con,$sql))
           {
-              return $this->deletedSuccess;
+              return true;
           }
           else
           {
@@ -87,19 +94,25 @@ class Database
 
 
 
-    // update data in db
+    /**
+     * [die Funktion ändert die Zeilen in der Tabelle]
+     * @param  [type] $sql [description]
+     * @return [type]      [description]
+     */
     public function update($sql)
     {
         $result = mysqli_query($this->con,$sql);
         if(mysqli_query($this->con,$sql))
         {
-            return $this->updatedSuccess;
+            return true;
         }
         else
         {
             return die("Error : ".mysqli_error($this->con));
         }
     }
+
+
 
 
 

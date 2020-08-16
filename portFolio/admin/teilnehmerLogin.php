@@ -5,9 +5,9 @@ include('headerhome.php');
 
 <div class="container">
 <div id="article">
-          
+
 <div class="col-md-6 offset-md-3">
-<a>Teilnehmer-Login</a> 
+<a>Teilnehmer-Login</a>
   <form class="my-2 p-3 border" method="post" action="">
     <div class="form-group">
       <label for="inputNummer">Name</label>
@@ -19,13 +19,13 @@ include('headerhome.php');
     </div>
 
     <button type="submit" name="submit" class=" btn btn-dark">Login </button>
-  </form>   
-      
+  </form>
+
       </div>
 </div>
 
 <?php
-include('footer.php');
+include('incAdmin/footer.php');
 
 
  ?>

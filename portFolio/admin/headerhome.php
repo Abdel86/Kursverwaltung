@@ -17,7 +17,6 @@
               <li class="nav-item active">
                   <a class="nav-link" href="home.php">Home</a>
               </li>
-
             </ul>
         </div>
     </nav>

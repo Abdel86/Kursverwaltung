@@ -30,7 +30,7 @@ include('incUser\header.php');
             <td scope="row"><?php echo $row['kosten'] ?></td>
 
             <td>
-             <a href="" class="btn btn-info"><i class="fa fa-registered"></i></a>
+             <a href="pAnmelden.php?id=<?php echo $row['pruefungID']?>" class="btn btn-info"><i class="fa fa-registered"></i></a>
             </td>
 
           </tr>
