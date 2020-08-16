@@ -36,13 +36,35 @@ class DB {
     }
 
     function login($username, $pw){
-        $stmt = self::$_db->prepare("SELECT teilnehmerID FROM Teilnehmer WHERE teilnehmerName=:userName AND password=:pw");
+        $stmt = self::$_db->prepare("SELECT teilnehmerID FROM teilnehmer WHERE teilnehmerName=:userName AND password=:pw");
         $stmt->bindParam(":userName", $username);
         $stmt->bindParam(":pw", $pw);
         $stmt->execute();
 
         if($stmt->rowCount() === 1){
-            $stmt = self::$_db->prepare("UPDATE Teilnehmer SET Session =:sid WHERE teilnehmerName =:userName AND password=:pw");
+            $stmt = self::$_db->prepare("UPDATE teilnehmer SET Session =:sid WHERE teilnehmerName =:userName AND password=:pw");
+            $sessionID = session_id();
+            $stmt->bindParam(":sid", $sessionID);
+            $stmt->bindParam(":userName", $username);
+            $stmt->bindParam(":pw", $pw);
+            $stmt->execute();
+
+            return true;
+        }else{
+            return false;
+        }
+
+    
+    }
+
+    function verwalterLogin($username, $pw){
+        $stmt = self::$_db->prepare("SELECT verwalterID FROM verwalter WHERE verwalterUsername=:userName AND password=:pw");
+        $stmt->bindParam(":userName", $username);
+        $stmt->bindParam(":pw", $pw);
+        $stmt->execute();
+
+        if($stmt->rowCount() === 1){
+            $stmt = self::$_db->prepare("UPDATE verwalter SET Session =:sid WHERE verwalterUsername =:userName AND password=:pw");
             $sessionID = session_id();
             $stmt->bindParam(":sid", $sessionID);
             $stmt->bindParam(":userName", $username);
@@ -58,7 +80,7 @@ class DB {
     }
 
     function registrieren( $name, $email, $pw ){
-        if($stmt = self::$_db->prepare("INSERT INTO Teilnehmer(teilnehmerName, teilnehmerEmail, password) VALUES ( :name, :email, :password)")){
+        if($stmt = self::$_db->prepare("INSERT INTO teilnehmer(teilnehmerName, teilnehmerEmail, password) VALUES ( :name, :email, :password)")){
         
         #$stmt->bindParam(":id", $id);
         $stmt->bindParam(":name", $name);
@@ -73,7 +95,7 @@ class DB {
     }    
     // Schreibt den Fremdschlüssel dozentenID von Dozent in Kurse
     function schreiben($kA, $dA){
-        if($stmt = self::$_db->prepare("UPDATE Kurse SET Kurse.dozentID ='2'")){
+        if($stmt = self::$_db->prepare("UPDATE kurs SET Kurse.dozentID ='2'")){
             $stmt->bindParam(":kursName", $kA);
            # $stmt->bindParam(":dozentname", $dA);
             $stmt->execute();
@@ -84,40 +106,49 @@ class DB {
     }
     // Ermittelt die Anzahl der gesamten Teilnehmer
     function teilnehmerZaehlen(){
-        $stmt = self::$_db->prepare("SELECT COUNT(teilnehmerID) AS anzahl FROM Teilnehmer");
+        $stmt = self::$_db->prepare("SELECT COUNT(teilnehmerID) AS anzahl FROM teilnehmer");
             $stmt->execute();
             $row = $stmt->fetch();
-            echo "Es wurden ".$row['anzahl']." Teilnehmer gefunden";
+            echo "Es wurden ".$row['anzahl']." Teilnehmer gefunden ";
     }
 
      // Ermittelt die Anzahl der gesamten Kurse/Prüfungen
     function kurseZaehlen(){
-        $stmt = self::$_db->prepare("SELECT COUNT(kursID) AS anzahl FROM Kurse");
+        $stmt = self::$_db->prepare("SELECT COUNT(kursID) AS anzahl FROM kurs");
             $stmt->execute();
             $row = $stmt->fetch();
-            echo "Es wurden ".$row['anzahl']." Kurse gefunden";
+            echo "Es wurden ".$row['anzahl']." Kurse gefunden ";
         }
 
      // Ermittelt die Anzahl der unterichtenden Dozenten
      function dozentenInArbeitZaehlen(){
-        $stmt = self::$_db->prepare("SELECT COUNT(dozentID) AS anzahl FROM Kurse");
+        $stmt = self::$_db->prepare("SELECT COUNT(dozentID) AS anzahl FROM kurs");
             $stmt->execute();
             $row = $stmt->fetch();
-            echo "Es wurden ".$row['anzahl']." Kurse gefunden";
+            echo "Es wurden ".$row['anzahl']." Dozent in Kursen gefunden ";
         }
 
-    // Ermittelt die Anzahl der  Prüfungen
+    // Ermittelt die Anzahl der Prüfungen
      function pruefungZaehlen(){
-        $stmt = self::$_db->prepare("SELECT COUNT(pruefungsID) AS anzahl FROM Pruefung");
+        $stmt = self::$_db->prepare("SELECT COUNT(pruefungID) AS anzahl FROM pruefung");
             $stmt->execute();
             $row = $stmt->fetch();
-            echo "Es wurden ".$row['anzahl']." Kurse gefunden";
+            echo "Es wurden ".$row['anzahl']." Prüfungen gefunden ";
         }
+    // Ermittelt die Anzahl der Prüfungen
+    // SELECT Country, COUNT(Country) AS anzahl FROM Customers GROUP BY Country HAVING anzahl >11;
+    function topflop(){
+        $stmt = self::$_db->prepare("SELECT kursId, COUNT(kursId) AS anzahl FROM teilnehmer GROUP BY kursId HAVING anzahl >11");
+            $stmt->execute();
+            $row = $stmt->fetch();
+            echo "Es wurden ".$row['anzahl']." TOP KUrs gefunden ";
+        }
+       
     // Ausgabe der Dozenten-Name aus der TAbelle Dozente
     function dozentAusgeben(){
 
         try{
-            $stmt = self::$_db->prepare("SELECT dozentName FROM Dozent");
+            $stmt = self::$_db->prepare("SELECT dozentName FROM dozent");
             $stmt->execute();
             $results=$stmt->fetchAll();
         }catch(Exception $ex)
@@ -129,13 +160,21 @@ class DB {
     
     // die Bestehende  Session wird gelöscht
     function sessionLoeschen(){
-        $stmt = self::$_db->prepare("UPDATE Teilnehmer SET Session = '' WHERE Session= :sid");
+        $stmt = self::$_db->prepare("UPDATE teilnehmer SET Session = '' WHERE Session= :sid");
         $sessionID = session_id();
         $stmt->bindParam(":sid", $sessionID);   
         $stmt->execute();
     }
+
+    function   verwalterSessionLoeschen(){
+        $stmt = self::$_db->prepare("UPDATE verwalter SET session = '' WHERE Session= :sid");
+        $sessionID = session_id();
+        $stmt->bindParam(":sid", $sessionID);   
+        $stmt->execute();
+    }
+
     function ausgabe(){
-        $statement = self::$_db->prepare("SELECT kursNummer, kursZeit, kursBeginn, kursEnde FROM Kurse");
+        $statement = self::$_db->prepare("SELECT kursNummer, kursZeit, kursBeginn, kursEnde FROM kurs");
               $statement->bindParam(':limit', $limit, PDO::PARAM_INT);
               $statement->execute();
 
