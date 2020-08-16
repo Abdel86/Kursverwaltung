@@ -32,7 +32,9 @@ $db = new Database();
                 <li class="nav-item active">
                     <a class="nav-link" href="meineAnmeldungen.php">Meine Anmeldungen</a>
                 </li>
-
+                <li class="nav-item active">
+                    <a class="nav-link" href="teilnehmerLogout.php">Logout</a>
+                </li>
             </ul>
         </div>
     </nav>
